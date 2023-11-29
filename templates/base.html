@@ -19,9 +19,11 @@
         <h1 class="display-4">Ticketmaster</h1>
         <h1 class="display-12 fw-bold">Quickly find tickets around you</h1>
         <br>
-        <div class="input-group mb-3 justify-content-center col-9 g-3">
           <form id="searchForm">
-          {% csrf_token %}
+              {% csrf_token %}
+        <div class="input-group mb-3 justify-content-center col-9 g-3">
+
+
           <label for="searchTerm"></label><input type="text" name="searchTerm" class="form-control"
             placeholder="Search by Genre, Artist, or Event" id="searchTerm">
           <label for="location"></label><input type="text" name="location" class="form-control"
