@@ -1,0 +1,106 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+
+.container-fluid {
+  background-color: blue;
+    padding: 50px 400px 40px;
+    color: white;
+  text-align: center;
+
+}
+
+.container {
+ margin: 30px;
+}
+
+.card {
+    margin: 30px 20px;
+    padding: 20px;
+}
+
+form {
+  margin: 0;
+  padding: 0;
+}
+
+#alert {
+  text-align: left;
+}
+
+#search {}
+#content {}
+
+#input1 {}
+#input2 {}
+
+#left {}
+#center {}
+#right{
+  text-align: right;
+  color: green;
+}
+
+#events {
+  margin-left: 20px;
+  color: grey;
+}
+
+#results {}
+
+
+
+
+ 
+
+  @media screen and (min-width: 1200px) {
+    #large_screen {
+      display: block;
+    }
+    #small_screen {
+      display: none;
+      height: 350px;
+    }
+    #super_small_screen {
+      display: none;
+      height: 350px;
+    }
+  }
+
+
+
+    @media screen and (max-width: 1200px) {
+      #large_screen {
+        display: none;
+      }
+
+      #small_screen {
+        display: block;
+      }
+      #super_small_screen {
+        display: none;
+      }
+    }
+
+@media screen and (max-width: 600px) {
+  #large_screen {
+    display: none;
+  }
+  #small_screen {
+    display: none;
+  }
+  #super_small_screen {
+    display: block;
+  }
+  #left, #right, #center {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 1500px) {
+.container-fluid {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+}
