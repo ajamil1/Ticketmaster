@@ -11,4 +11,7 @@ Ideas:
 Todo List: 
 - final decision on how to utilize CRUD
 (ideas: ticket list/product list, like page, etc.)
+- get highest quality images
+- finalize the convert the time and date
+  
   
