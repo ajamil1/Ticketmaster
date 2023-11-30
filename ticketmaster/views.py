@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import search_history
 
 from django.http import HttpResponse, JsonResponse
@@ -36,12 +36,13 @@ def index(request):
                     'address': event['_embedded']['venues'][0]['address']['line1'],
                     'city': event['_embedded']['venues'][0]['city']['name'],
                     'state': event['_embedded']['venues'][0]['state']['stateCode'],
-                    'ticket': event['url'],
+                    'url': event['url'],
                     'date': event['dates']['start']['localDate'],
                     'time': time
                 }
 
                 events.append(context)
+            print(events)
 
             return render(request, 'add.html', {'data': events})
 
