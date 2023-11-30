@@ -1,0 +1,72 @@
+{%if data|length == 0 %}
+<h4 id = "events">Sorry, No events found!</h4>
+{% else %}
+<h4 id = "events">{{ data|length }} entries found!</h4>
+{% endif %}
+    {% for event in data %}
+    <div class="card shadow" id="large_screen">
+        <div class="row g-3 align-items-start">
+            <div class="col-6" id="left">
+                <img src="{{event.image}}" style="width: 500px; height: 300px;">
+            </div>
+            <div class="col-3" id="center">
+                <h2>{{event.venue}}</h2>
+                <br>
+                <h4>{{event.name}}</h4>
+                <br>
+                <h5>{{event.address}}</h5>
+                <h5>{{event.city}}, {{event.state}}</h5>
+                <a href={{event.url}} target="_blank">
+                    <button type="button" class="btn btn-primary">Find Ticket</button>
+                </a>
+            </div>
+            <div class="col-3" id="right">
+                <h2>{{event.date}}</h2>
+                <h4>{{event.time}}</h4>
+            </div>
+        </div>
+    </div>
+    <div class="card shadow" id="small_screen">
+        <img src="{{event.image}}" style="width: 100%;">
+        <div class="row g-3 align-items-start">
+            <div class="col-6" id="center">
+                <br>
+                <h2>{{event.venue}}</h2>
+                <br>
+                <h4>{{event.name}}</h4>
+                <br>
+                <h5>{{event.address}}</h5>
+                <h5>{{event.city}}, {{event.state}}</h5>
+                <a href={{event.url}} target="_blank">
+                    <button type="button" class="btn btn-primary">Find Ticket</button>
+                </a>
+            </div>
+            <div class="col-6" id="right">
+                <br>
+                <h2>{{event.date}}</h2>
+                <h4>{{event.time}}</h4>
+            </div>
+        </div>
+    </div>
+    <div class="card shadow" id="super_small_screen">
+        <img src="{{event.image}}" style="width: 100%;">
+        <div class="row g-3 align-items-start">
+            <div id="center">
+                <br>
+                <h2>{{event.venue}}</h2>
+                <h4>{{event.name}}</h4>
+                <br>
+                <h5>{{event.address}}</h5>
+                <h5>{{event.city}}, {{event.state}}</h5>
+            </div>
+            <div id="right">
+                <h2>{{event.date}}</h2>
+                <h4>{{event.time}}</h4>
+                <a href={{event.url}} target="_blank">
+                    <button type="button" class="btn btn-primary">Find Ticket</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+{% endfor %}
