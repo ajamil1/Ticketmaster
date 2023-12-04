@@ -19,13 +19,15 @@
         <h1 class="display-4">Ticketmaster</h1>
         <h1 class="display-12 fw-bold">Quickly find tickets around you</h1>
         <br>
+          <!--Form -->
           <form id="searchForm">
               {% csrf_token %}
         <div class="input-group mb-3 justify-content-center col-9 g-3">
 
-
+            <!-- Input 1: Search Term (read by Ticketmaster APi as "keyWord") -->
           <label for="searchTerm"></label><input type="text" name="searchTerm" class="form-control"
             placeholder="Search by Genre, Artist, or Event" id="searchTerm">
+            <!-- Input 2: Location (read by Ticketmaster APi as "location") -->
           <label for="location"></label><input type="text" name="location" class="form-control"
             placeholder="Enter a city e.g, Hartford" id="location">
           <div class="input-group-append">

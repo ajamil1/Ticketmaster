@@ -16,8 +16,8 @@
                 <br>
                 <h5>{{event.address}}</h5>
                 <h5>{{event.city}}, {{event.state}}</h5>
-                <a href={{event.url}} target="_blank">
-                    <button type="button" class="btn btn-primary">Find Ticket</button>
+                <a class="btn btn-primary" href="{{event.url}}" target="_blank">
+                    Find Ticket
                 </a>
             </div>
             <div class="col-3" id="right">
@@ -27,7 +27,7 @@
         </div>
     </div>
     <div class="card shadow" id="small_screen">
-        <img src="{{event.url}}" style="width: 100%;">
+        <img src="{{event.image}}" style="width: 100%;">
         <div class="row g-3 align-items-start">
             <div class="col-6" id="center">
                 <br>

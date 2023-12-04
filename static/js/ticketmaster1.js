@@ -1,4 +1,24 @@
 // event listener for the search button
+$( document ).ready(function() {
+    $.ajax({
+    type: "GET",
+    url: `/api/recommendations`,
+    async: true,
+        success: function(data) {
+          //console.log(data);
+          // Grab the results from the API JSON return
+
+          if(!data.includes("Sorry, No events found!")){
+              $('#content').removeClass('d-none');
+              $('#alert').addClass('d-none');
+              $('#results').append(data);
+          }
+        }
+    })
+});
+
+
+
 const search = document.getElementById("search");
 search.addEventListener("click", function () {
     // clear the container before adding new cards

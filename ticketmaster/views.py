@@ -4,8 +4,6 @@ from .models import search_history
 from django.http import HttpResponse, JsonResponse
 import requests
 
-
-
 def index(request):
     # if the request method is a post
     print(request.method)
@@ -20,7 +18,8 @@ def index(request):
             data = get_events(location, searchTerm)
             if "_embedded" not in data:
                 return render(request, 'add.html', {'data': []})
-            search_history.objects.create(latestSearch=searchTerm, latestLocation=location)
+            if not search_history.objects.filter(search__icontains=searchTerm, location__icontains=location):
+                search_history.objects.create(search=searchTerm, location=location)
             data = data["_embedded"]["events"]
             response = JsonResponse(data, status=200, safe=False)
             events = []

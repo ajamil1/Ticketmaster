@@ -18,5 +18,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('ticketmaster/', include('ticketmaster.urls'))
+    path('ticketmaster/', include('ticketmaster.urls')),
+    path('api/', include('ticketmaster.api_urls'))
 ]
