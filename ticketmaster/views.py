@@ -1,9 +1,18 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth import login, logout
+from django.contrib.auth.decorators import login_required
 from .models import search_history
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 import requests
 from .models import FavoritedEvent
+from django.contrib import messages
+
+
+@login_required(login_url='login')
+def home(request):
+    return render(request, 'home.html')
 
 
 def index(request):
@@ -139,3 +148,50 @@ def delete_favorite(request, favorite_id):
         return JsonResponse({'message': 'Favorite deleted successfully.'})
 
     return JsonResponse({'error': 'Invalid request method.'}, status=400)
+
+
+def register_view(request):
+    form = UserCreationForm(request.POST or None)
+
+    if request.method == 'POST':
+        # check whether it's valid: for example it verifies that password1 and password2 match
+        if form.is_valid():
+            # form.save()
+            # if you want to log in the user directly after registration, use the following three lines,
+            # which logins the user and redirect to index
+            user = form.save()
+            login(request, user)
+            return redirect('home')
+            # if you do want to log in the user directly after registration, comment out the three lines above,
+            # redirect the user to login page so that after registration the user can enter the credentials
+            # return redirect('login')
+
+    return render(request, 'register.html', {'form': form})
+
+
+def login_view(request):
+    # this function authenticates the user based on username and password
+    # AuthenticationForm is a form for logging a user in.
+    # if the request method is a post
+    if request.method == 'POST':
+        # Plug the request.post in AuthenticationForm
+        form = AuthenticationForm(data=request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            # get the user info from the form data and login the user
+            user = form.get_user()
+            login(request, user)
+            # redirect the user to index page
+            return redirect('home')
+    else:
+        # Create an empty instance of Django's AuthenticationForm to generate the necessary html on the template.
+        form = AuthenticationForm()
+
+    return render(request, 'login.html', {'form': form})
+
+
+def logout_view(request):
+    # This is the method to log out the user
+    logout(request)
+    # redirect the user to index page after logout
+    return redirect('home')
