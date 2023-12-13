@@ -1,8 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import search_history
-
+from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 import requests
+from .models import FavoritedEvent
+
 
 def index(request):
     # if the request method is a post
@@ -97,4 +99,43 @@ def recommendations(request):
 
             events.append(context)
             i = i + 1
-        return render(request, 'add.html', {'data':events})
+        return render(request, 'add.html', {'data': events})
+
+
+def add_to_favorites(request):
+    if request.method == 'POST':
+        venue = request.POST.get('venue')
+        name = request.POST.get('name')
+        date = request.POST.get('date')
+        time = request.POST.get('time')
+        url = request.POST.get('url')
+
+        # Save to FavoritedEvent model
+        FavoritedEvent.objects.create(venue=venue, name=name, date=date, time=time, url=url)
+
+        return JsonResponse({'message': 'Event added to favorites successfully.'})
+
+    return JsonResponse({'error': 'Invalid request method.'}, status=400)
+
+
+def clear_favorites(request):
+    # Assuming you have a model named FavoritedEvent for storing favorites
+    FavoritedEvent.objects.all().delete()
+
+    return JsonResponse({
+        'cleared': True,
+        'message': 'Favorites cleared successfully'
+    })
+
+
+def delete_favorite(request, favorite_id):
+    if request.method == 'POST':
+        # Get the FavoritedEvent instance using the provided ID
+        favorited_event = get_object_or_404(FavoritedEvent, id=favorite_id)
+
+        # Delete the FavoritedEvent instance
+        favorited_event.delete()
+
+        return JsonResponse({'message': 'Favorite deleted successfully.'})
+
+    return JsonResponse({'error': 'Invalid request method.'}, status=400)

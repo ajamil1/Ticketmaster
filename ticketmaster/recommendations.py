@@ -18,10 +18,8 @@ def index(request):
         locations = searchHistory.values('location')
         searches = searchHistory.values('search')
 
-        #for location in locations:
+        # for location in locations:
         print(locations.annotate(count=Count('location')).order_by("-count"))
-
-
 
         if searchHistory.count() == 0:
             return render(request, 'add.html', {'data': []})

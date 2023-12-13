@@ -11,6 +11,10 @@ html {
 
 }
 
+#nav{
+  background-color: white;
+}
+
 .container {
  margin: 30px;
 }
@@ -52,11 +56,6 @@ input {
 }
 
 #results {}
-
-
-
-
- 
 
   @media screen and (min-width: 1200px) {
     #large_screen {
