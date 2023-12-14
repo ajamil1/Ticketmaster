@@ -1,10 +1,8 @@
-from datetime import datetime
 import requests
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.db.models import Count
 from django.core.exceptions import BadRequest
-
 
 from .models import search_history
 
@@ -39,26 +37,8 @@ def index(request):
         events = []
         for event in data:
             time = ""
-
             if "localTime" in event['dates']['start']:
                 time = event['dates']['start']['localTime']
-
-                # Convert string to datetime object
-                time_object = datetime.strptime(time, "%H:%M:%S")
-
-                # Format the result
-                formatted_time = time_object.strftime("%I:%M %p")
-                time = formatted_time
-            if "localDate" in event['dates']['start']:
-                # Input date value
-                date = event['dates']['start']['localDate']  # Format: YEAR-DAY-MONTH
-
-                # Convert string to datetime object
-                date_object = datetime.strptime(date, "%Y-%m-%d")
-
-                # Format the result
-                formatted_date = date_object.strftime("%B %d, %Y")
-                date = formatted_date
 
             context = {
                 'image': event['images'][0]['url'],
@@ -68,11 +48,12 @@ def index(request):
                 'city': event['_embedded']['venues'][0]['city']['name'],
                 'state': event['_embedded']['venues'][0]['state']['stateCode'],
                 'url': event['url'],
-                'date': date,
+                'date': event['dates']['start']['localDate'],
                 'time': time
             }
 
             events.append(context)
+        print(events)
 
         return render(request, 'add.html', {'data': events})
 

@@ -1,0 +1,109 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+
+/* CTRL + F5 to clear cache if CSS is not loading*/
+#header{
+  background-color: blue;
+    padding: 90px;
+    color: white;
+  text-align: center;
+
+}
+
+.bi-chat-square-heart{
+  font-size: 100px;
+}
+.container {
+ margin: 30px;
+}
+
+.card {
+    margin: 30px 20px;
+    padding: 20px;
+}
+
+form {
+  margin: 0;
+  padding: 0;
+}
+
+input {
+  display: inline;
+}
+
+#alert {
+  text-align: left;
+}
+
+#search {}
+#content {}
+
+#input1 {}
+#input2 {}
+
+#left {}
+#center {}
+#right{
+  text-align: right;
+  color: green;
+}
+
+#events {
+  margin-left: 20px;
+  color: grey;
+}
+
+#results {}
+
+  @media screen and (min-width: 1200px) {
+    #large_screen {
+      display: block;
+    }
+    #small_screen {
+      display: none;
+      height: 350px;
+    }
+    #super_small_screen {
+      display: none;
+      height: 350px;
+    }
+  }
+
+
+
+    @media screen and (max-width: 1200px) {
+      #large_screen {
+        display: none;
+      }
+
+      #small_screen {
+        display: block;
+      }
+      #super_small_screen {
+        display: none;
+      }
+    }
+
+@media screen and (max-width: 600px) {
+  #large_screen {
+    display: none;
+  }
+  #small_screen {
+    display: none;
+  }
+  #super_small_screen {
+    display: block;
+  }
+  #left, #right, #center {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 1500px) {
+.container-fluid {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+}
